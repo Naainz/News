@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Stories</title>
+    <style>
+        body {
+            font-family: Satoshi, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .news-story {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .news-story:last-child {
+            border-bottom: none;
+        }
+        .news-story h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+        .news-story p {
+            margin: 0 0 10px;
+        }
+        .news-story a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .news-story a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Latest News Stories</h1>
+        <div id="news"></div>
+    </div>
+
+    <script>
+        const apiKey = 'change-this';
+        const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const newsContainer = document.getElementById('news');
+                data.articles.forEach(article => {
+                    const newsStory = document.createElement('div');
+                    newsStory.classList.add('news-story');
+                    
+                    const title = document.createElement('h2');
+                    title.textContent = article.title;
+                    newsStory.appendChild(title);
+                    
+                    const description = document.createElement('p');
+                    description.textContent = article.description;
+                    newsStory.appendChild(description);
+                    
+                    const link = document.createElement('a');
+                    link.href = article.url;
+                    link.textContent = 'Read more';
+                    newsStory.appendChild(link);
+                    
+                    newsContainer.appendChild(newsStory);
+                });
+            })
+            .catch(error => console.error('Error fetching the news:', error));
+    </script>
+</body>
+</html>
