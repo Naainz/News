@@ -34,13 +34,14 @@
         .carousel-item {
             flex: 0 0 20%;
             margin: 0 -5%; 
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 0.6;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, z-index 0.3s ease-in-out;
+            opacity: 1;
             transform: scale(0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            z-index: 1;
         }
 
         .carousel-item.middle {
@@ -48,7 +49,7 @@
             margin: 0 -5%; 
             opacity: 1;
             transform: scale(1.5); 
-            position: relative;
+            z-index: 10; /* Bring the main image above the others */
         }
 
         .carousel-item img {
@@ -92,7 +93,7 @@
     </div>
 
     <script>
-        const apiKey = 'YOUR_NEWS_DATA_IO_API_KEY';  
+        const apiKey = 'change-this';  
         const apiUrl = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=us&language=en&category=business`;
         const carousel = document.getElementById('carousel');
         let currentIndex = 0;
@@ -146,9 +147,10 @@
             const items = document.querySelectorAll('.carousel-item');
             items.forEach(item => {
                 item.classList.remove('middle');
-                item.style.opacity = '0.6';
+                item.style.opacity = '1';
                 item.style.transform = 'scale(0.8)';
                 item.style.display = 'none';
+                item.style.zIndex = '1';
             });
 
             let middleIndex = Math.floor(visibleItems / 2);
@@ -167,7 +169,7 @@
             const middleIndex = Math.floor(visibleItems / 2);
 
             items.forEach(item => {
-                item.style.transition = `transform ${transitionDuration}ms ease-in-out, opacity ${transitionDuration}ms ease-in-out`;
+                item.style.transition = `transform ${transitionDuration}ms ease-in-out, opacity ${transitionDuration}ms ease-in-out, z-index ${transitionDuration}ms ease-in-out`;
             });
 
             items[(currentIndex + middleIndex) % items.length].classList.remove('middle');
