@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+
 body {
-    font-family: Satoshi, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Slackey', cursive;
+    background-color: #FAEFD6;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -103,12 +105,12 @@ body {
     font-size: 1.2em;
     border-radius: 5px;
     border: 1px solid #ccc;
-    font-family: Satoshi, sans-serif;
+    font-family: 'Slackey', cursive;
     box-sizing: border-box;
 }
 
 .search-container input::placeholder {
-    font-family: Satoshi, sans-serif;
+    font-family: 'Slackey', cursive;
 }
 
 .search-container button {
@@ -145,6 +147,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Slackey', cursive;
 }
 
 .result-card img {
